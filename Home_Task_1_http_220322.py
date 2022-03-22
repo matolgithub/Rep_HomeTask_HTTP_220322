@@ -22,8 +22,12 @@ def dict_heroes_intel():
     for item in heroes:
         url = f"https://www.superheroapi.com/api.php/2619421814940190/search/{item}"
         resp_name = requests.get(url)
-        int_hero = resp_name.json()['results'][0]['powerstats']['intelligence']
-        heroes_intell_dict[item] = int(int_hero)
+        try:
+            int_hero = resp_name.json()['results'][0]['powerstats']['intelligence']
+        except LookupError:
+            print(f'Wrong name: {item}.')
+        else:
+            heroes_intell_dict[item] = int(int_hero)         
     return heroes_intell_dict
 
 # the method of choosing most intelligence hero 
