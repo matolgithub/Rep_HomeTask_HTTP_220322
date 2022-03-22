@@ -1,13 +1,22 @@
 import requests
 
-import pprint
+from pprint import pprint
 
-url = "https://superheroapi.com/api/2619421814940190/search/name"
-resp = requests.get(url)
-pprint(resp.json())
-# pprint(resp.status_code)
-# # print(resp.headers)
-# print(resp.status_code)
-# # print(resp.text)
-# # print(resp.content)
-# # print(resp.text)
+# input the names of heroes
+def input_heroes():
+    list_heroes = []
+    name = ''
+    while name != 'stop':
+        name = input('Input the name of hero (else: "stop"): ')
+        if name == 'stop':
+            break
+        else:
+            list_heroes.append(name)
+    return (list_heroes)
+
+def most_intelligence():
+    url = "https://www.superheroapi.com/api.php/2619421814940190/search/Captain_America"
+    resp = requests.get(url)
+    pprint(resp.json())
+
+input_heroes()
